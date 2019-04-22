@@ -6,29 +6,23 @@
   // Clicou em enviar? O POST Existe?
   if ($_POST != NULL) {
 
-    // Conecta ao BD
-    $conexao = new mysqli("localhost", "root", "", "20191_eng");
-
-    // Deu erro ao conectar?
-    if ($conexao->connect_error) {
-      echo "Erro de Conexão!<br>".$conexao->connect_error;
-    }
+    include_once "../conexao_bd.php";
 
     // Obtem dados do POST
     $nome = $_POST["nome"];
     $telefone = $_POST["telefone"];
     $email = $_POST["email"];
-    $grupo = $_POST["grupo"];
+    $cod_grupo = $_POST["cod_grupo"];
     $detalhes = $_POST["detalhes"];
 
     //addslashes() <- evita SQL Injection quado for fazer um SELECT
 
     // Valida campos obrigatórios
-    if ($nome != "" && $telefone != "" && $grupo != "" ) {
+    if ($nome != "" && $telefone != "" && $cod_grupo != "" ) {
 
       // Cria o comando SQL
-      $sql = "INSERT INTO contato (nome, telefone, email, grupo, detalhes) 
-              VALUES ('$nome', '$telefone', '$email', '$grupo', '$detalhes')";
+      $sql = "INSERT INTO contato (nome, telefone, email, cod_grupo, detalhes) 
+              VALUES ('$nome', '$telefone', '$email', '$cod_grupo', '$detalhes')";
 
       // Executa no BD
       $retorno = $conexao->query($sql);
@@ -99,12 +93,39 @@
 
         <div class="form-group">
           <label>Grupo</label>
-          <select name="grupo" required class="form-control">
+          <select name="cod_grupo" required class="form-control">
             <option value="">Selecione</option>
-            <option value="Amigos">Amigos</option>
-            <option value="Família">Família</option>
-            <option value="Trabalho">Trabalho</option>
-            <option value="Outros">Outros</option>
+
+            <?php
+
+              // Remove mensagem de alerta
+              error_reporting(1);
+
+              include_once "../conexao_bd.php";
+
+              // Cria comando SQl
+              $sql = "SELECT * 
+                      FROM grupo";
+
+              // Executa no BD
+              $retorno = $conexao->query($sql);
+
+              // Deu erro?
+              if ($retorno == false) {
+                echo $conexao->error;
+              }
+
+              while ($registro = $retorno->fetch_array()) {
+                
+                $id = $registro["id"];
+                $nome = $registro["nome"];
+
+                echo "<option value='$id'>$nome</option>";
+
+              }
+
+            ?>
+
           </select>
         </div>
 

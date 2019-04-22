@@ -6,13 +6,7 @@
   // Clicou em enviar? O POST Existe?
   if ($_POST != NULL) {
 
-    // Conecta ao BD
-    $conexao = new mysqli("localhost", "root", "", "20191_eng");
-
-    // Deu erro ao conectar?
-    if ($conexao->connect_error) {
-      echo "Erro de Conexão!<br>".$conexao->connect_error;
-    }
+    include_once "../conexao_bd.php";
 
     // Obtem dados do POST
     $nome = $_POST["nome"];
