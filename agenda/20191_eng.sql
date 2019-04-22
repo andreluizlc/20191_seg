@@ -22,8 +22,8 @@ SET time_zone = "+00:00";
 -- Database: `20191_eng`
 --
 
-CREATE DATABASE IF NOT EXISTS '20191_eng';
-USE '20191_eng';
+CREATE DATABASE IF NOT EXISTS `20191_eng`;
+USE `20191_eng`;
 
 -- --------------------------------------------------------
 
