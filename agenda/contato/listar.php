@@ -22,6 +22,8 @@
           <th>ID</th>
           <th>Nome</th>
           <th>Telefone</th>
+          <th>Ver</th>
+          <th>Apagar</th>
         </tr>
         <?php
 
@@ -52,6 +54,8 @@
                     <td>$id</td>
                     <td>$nome</td>
                     <td>$telefone</td>
+                    <td><a class='btn btn-info' href='ver.php?id=$id'>Ver</a></td>
+                    <td><a onclick=\"return confirm('Deseja Apagar?');\" class='btn btn-danger' href='apagar.php?id=$id'>Apagar</a></td>
                   </tr>";
 
           }
