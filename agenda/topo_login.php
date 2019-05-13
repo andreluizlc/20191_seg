@@ -1,18 +1,3 @@
-<?php
-
-// Inicializa a sessão
-session_start();
-
-// N"ao está logado?
-if ($_SESSION["logado"] != "ok") {
-
-  // Volta para o login
-  header("Location: ../index.php");
-
-}
-
-?>
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,8 +14,4 @@ if ($_SESSION["logado"] != "ok") {
   </head>
   <body>
 
-    <?php include_once "../menu.php"; ?>
-
     <div class="container">
-
-      <marquee>Bem vindo(a), <?php echo $_SESSION["nome_usuario"]; ?>!</marquee>

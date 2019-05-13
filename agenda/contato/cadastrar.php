@@ -16,14 +16,18 @@
     $detalhes = $_POST["detalhes"];
     $foto = $_POST["foto"];
 
-    //addslashes() <- evita SQL Injection quado for fazer um SELECT
+    // Inicializa a sessão
+    session_start();
+
+    // ID do usuário logado
+    $id_usuario = $_SESSION["id_usuario"];
 
     // Valida campos obrigatórios
     if ($nome != "" && $telefone != "" && $cod_grupo != "" ) {
 
       // Cria o comando SQL
-      $sql = "INSERT INTO contato (nome, telefone, email, cod_grupo, detalhes, foto) 
-              VALUES ('$nome', '$telefone', '$email', '$cod_grupo', '$detalhes', '$foto')";
+      $sql = "INSERT INTO contato (nome, telefone, email, cod_grupo, detalhes, foto, cod_usuario) 
+              VALUES ('$nome', '$telefone', '$email', '$cod_grupo', '$detalhes', '$foto', '$id_usuario')";
 
       // Executa no BD
       $retorno = $conexao->query($sql);

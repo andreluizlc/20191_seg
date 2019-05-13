@@ -18,9 +18,13 @@
 
     include_once "../conexao_bd.php";
 
+    // ID do usuário logado
+    $id_usuario = $_SESSION["id_usuario"];
+
     // Cria comando SQl
     $sql = "SELECT * 
-            FROM contato";
+            FROM contato 
+            WHERE cod_usuario = $id_usuario";
 
     // Executa no BD
     $retorno = $conexao->query($sql);

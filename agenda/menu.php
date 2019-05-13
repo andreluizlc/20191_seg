@@ -26,8 +26,10 @@
           <a class="dropdown-item" href="../grupo/cadastrar.php">Cadastrar</a>
         </div>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="../logoff.php">Sair</a>
+      </li>
       
     </ul>
-
-  </div>
 </nav>
